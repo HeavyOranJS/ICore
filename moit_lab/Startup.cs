@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using moit_lab.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using moit_lab.Models;
 
 namespace moit_lab
 {
@@ -38,10 +39,9 @@ namespace moit_lab
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            //services.AddIdentity <IdentityUser, IdentityRole> ()
-            //  .AddEntityFrameworkStores<ApplicationDbContext>()
-            //  .AddDefaultTokenProviders();
-
+            services.AddDbContext<HumanResourcesContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("HumanResources")));
 
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();

@@ -27,11 +27,11 @@ namespace moit_lab.Controllers
             if (ModelState.IsValid)
             {
                 IdentityUser user = new IdentityUser { Email = model.Email, UserName = model.Email};
-                // добавляем пользователя
+                // add user
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // установка куки
+                    // auth in cookie
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
