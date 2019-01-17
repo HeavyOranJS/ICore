@@ -36,8 +36,9 @@
 
                     @if (User.IsInRole("admin"))
                     {
-                        <li><a asp-area="" asp-controller="Administration" asp-action="Index">Administration</a></li>}
-                    <li><a asp-area="" asp-controller="Roles" asp-action="Index">Administration</a></li>
+                        <li><a asp-area="" asp-controller="HumanResources" asp-action="StaffList">Manage Staff</a></li>
+                        <li><a asp-area="" asp-controller="Roles" asp-action="Index">Administration</a></li>
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

@@ -46,6 +46,10 @@ namespace moit_lab
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // Add Role claims to the User object
+            // See: https://github.com/aspnet/Identity/issues/1813#issuecomment-420066501
+            // and https://stackoverflow.com/questions/53271496/asp-net-core-identity-2-user-isinrole-always-returns-false
+            services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, UserClaimsPrincipalFactory<IdentityUser, IdentityRole>>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

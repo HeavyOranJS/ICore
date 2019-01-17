@@ -9,8 +9,8 @@ namespace CustomIdentityApp.Controllers
 {
     public class RolesController : Controller
     {
-        RoleManager<IdentityRole> _roleManager;
-        UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _userManager;
         public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
@@ -79,17 +79,17 @@ namespace CustomIdentityApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {
-            // получаем пользователя
+            // getting user
             IdentityUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                // получем список ролей пользователя
+                // get user roles list
                 var userRoles = await _userManager.GetRolesAsync(user);
-                // получаем все роли
+                // get all roles
                 var allRoles = _roleManager.Roles.ToList();
-                // получаем список ролей, которые были добавлены
+                // get added roles
                 var addedRoles = roles.Except(userRoles);
-                // получаем роли, которые были удалены
+                // get deleted roles
                 var removedRoles = userRoles.Except(roles);
 
                 await _userManager.AddToRolesAsync(user, addedRoles);

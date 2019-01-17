@@ -28,7 +28,7 @@ namespace moit_lab.Utility
                 IdentityResult result = await userManager.CreateAsync(admin, password);
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(admin, "$ETzAr2jEe+7R+u");
+                    await userManager.AddToRoleAsync(admin, "admin");
                 }
             }
         }
