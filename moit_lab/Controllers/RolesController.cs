@@ -52,16 +52,14 @@ namespace CustomIdentityApp.Controllers
         }
 
         public IActionResult UserList() => View(_userManager.Users.ToList());
-        public IActionResult suer() => View(_userManager.Users);
-
 
         public async Task<IActionResult> Edit(string userId)
         {
-            // получаем пользователя
+            // get user
             IdentityUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                // получем список ролей пользователя
+                // get user's roles
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var allRoles = _roleManager.Roles.ToList();
                 ChangeRoleViewModel model = new ChangeRoleViewModel

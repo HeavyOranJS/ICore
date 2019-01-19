@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace moit_lab.Models
@@ -12,12 +12,14 @@ namespace moit_lab.Models
             Database.EnsureCreated();
         }
 
-        public DbSet<Staff> StaffMember { get; set; }
+        public DbSet<HumanResourcesModel> StaffMember { get; set; }
     }
 
-    public class Staff
+    public class HumanResourcesModel
     {
-        public uint Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long Id { get; set; }
 
         [Required]
         [StringLength(40)]
@@ -29,7 +31,7 @@ namespace moit_lab.Models
 
         [Required]
         [StringLength(40)]
-        public string Surmane { get; set; }
+        public string Surname { get; set; }
 
         [Required]
         public DateTime BirthDate { get; set; }

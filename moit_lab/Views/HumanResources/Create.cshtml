@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@*@model moit_lab.Models.HumanResourcesModel*@
+
+<h2>Create new staff member</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group" style="width:40%">
+        @*<input type="hidden" name="Id" value="@Model.Id" />*@
+        <table class="table form-group">
+            <thead>
+                <tr>
+                    <th class="col-sm-1 col-md-1 col-lg-1">Table field</th>
+                    <th class="col-sm-2 col-md-4 col-lg-6">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Familyname</td>
+                    <td>
+                        <input class="form-control" name="FamilyName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input class="form-control" name="Name" /></td>
+                </tr>
+                <tr>
+                    <td>Surname</td>
+                    <td><input class="form-control" name="Surname" /></td>
+                </tr>
+                <tr>
+                    <td>Date of birth</td>
+                    <td><input class="form-control" name="BirthDate" /></td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td><input class="form-control" name="Image" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary">Create new staff member</button>
+</form>

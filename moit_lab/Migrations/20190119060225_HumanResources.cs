@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace moit_lab.Migrations
@@ -11,10 +12,11 @@ namespace moit_lab.Migrations
                 name: "StaffMember",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FamilyName = table.Column<string>(maxLength: 40, nullable: false),
                     Name = table.Column<string>(maxLength: 40, nullable: false),
-                    Surmane = table.Column<string>(maxLength: 40, nullable: false),
+                    Surname = table.Column<string>(maxLength: 40, nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: false),
                     Image = table.Column<string>(nullable: true)
                 },

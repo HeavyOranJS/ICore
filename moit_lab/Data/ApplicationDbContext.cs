@@ -11,6 +11,7 @@ namespace moit_lab.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+           
         }
     }
 }

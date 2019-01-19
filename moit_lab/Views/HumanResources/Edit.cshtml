@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model moit_lab.Models.HumanResourcesModel
+
+<h2>Edit staff member @Model.FamilyName @Model.Name @Model.Surname</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group" style="width:40%">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <table class="table form-group">
+            <thead>
+                <tr>
+                    <th class="col-sm-1 col-md-1 col-lg-1">Table field</th>
+                    <th class="col-sm-2 col-md-4 col-lg-6">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Familyname</td>
+                    <td>
+                        <input class="form-control" name="FamilyName" value="@Model.FamilyName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input class="form-control" name="Name" value="@Model.Name" /></td>
+                </tr>
+                <tr>
+                    <td>Surname</td>
+                    <td><input class="form-control" name="Surname" value="@Model.Surname" /></td>
+                </tr>
+                <tr>
+                    <td>Date of birth</td>
+                    <td><input class="form-control datepicker" name="BirthDate" value="@Model.BirthDate.Date.ToString("d")" /></td>
+                </tr>
+                <tr>
+                    <td>Image</td>
+                    <td><input class="form-control" name="Image" value="@Model.Image" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

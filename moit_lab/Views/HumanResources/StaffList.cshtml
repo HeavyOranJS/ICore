@@ -1,25 +1,26 @@
-﻿@*@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>*@
-@*@model IEnumerable<Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>*@
-@model IEnumerable<moit_lab.Models.Staff>
+﻿@model IEnumerable<moit_lab.Models.HumanResourcesModel>
 
 
-<h2>Roles</h2>
+<h2>Staff</h2>
 <table class="table">
     @foreach (var staffMember in Model)
     {
     <tr>
+        <td>@staffMember.Id</td>
         <td>@staffMember.FamilyName</td>
         <td>@staffMember.Name</td>
-        <td>@staffMember.Surmane</td>
-        @*<td>
+        <td>@staffMember.Surname</td>
+        <td>
+            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-staffMemberId="@staffMember.Id">Edit</a>
+        </td>
+        <td>
             <form asp-action="Delete" asp-route-id="@staffMember.Id" method="post">
                 <button type="submit" class="btn btn-sm btn-danger">
-                    Удалить
+                    <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </form>
-        </td>*@
+        </td>
     </tr>
     }
 </table>
-@*<a asp-action="Create">Add role</a>
-    <a asp-action="UserList">List of users</a>*@
+<a class="btn btn-sm btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> Add new member</a>

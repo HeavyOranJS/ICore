@@ -19,10 +19,11 @@ namespace moit_lab.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("moit_lab.Models.Staff", b =>
+            modelBuilder.Entity("moit_lab.Models.HumanResourcesModel", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("BirthDate");
 
@@ -36,7 +37,7 @@ namespace moit_lab.Migrations
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<string>("Surmane")
+                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(40);
 

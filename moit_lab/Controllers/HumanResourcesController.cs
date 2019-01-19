@@ -16,17 +16,91 @@ namespace moit_lab.Controllers
         public HumanResourcesController(HumanResourcesContext context)
         {
             _context = context;
-
         }
 
         public IActionResult StaffList() => View(_context.StaffMember.ToList());
 
-        // GET: /<controller>/
-        //public IActionResult Index()
-        //{
-            
+        public async Task<IActionResult> Edit(long staffMemberId)
+        {
+            // get staffMember
+            HumanResourcesModel staffMember = await _context.StaffMember.FindAsync(staffMemberId);
 
-        //    return View();
-        //}
+            if (staffMember != null)
+            {
+                // get user's roles
+                HumanResourcesModel model = new HumanResourcesModel
+                {
+                    Id = staffMember.Id,
+                    FamilyName = staffMember.FamilyName,
+                    Name = staffMember.Name,
+                    Surname = staffMember.Surname,
+                    BirthDate = staffMember.BirthDate,
+                    Image = staffMember.Image
+                };
+                return View(model);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(long id, string familyName, string name, string surname, string image, DateTime birthDate)
+        {
+            //check if ID have value on form
+            // get staffMember
+            HumanResourcesModel staffMember = await _context.StaffMember.FindAsync(id);
+
+            if (staffMember != null)
+            {
+                // update all staff's fields
+                staffMember.FamilyName = familyName;
+                staffMember.Name = name;
+                staffMember.Surname = surname;
+                staffMember.BirthDate = birthDate;
+                staffMember.Image = image;
+
+                //update and save staffmember in database
+                _context.StaffMember.Update(staffMember);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("StaffList");
+            }
+
+            return NotFound();
+        }
+
+        public IActionResult Create() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> Create(long id, string familyName, string name, string surname, string image, DateTime birthDate)
+        {
+            HumanResourcesModel staffMember = new HumanResourcesModel
+            {
+                // fill all staff's fields
+                FamilyName = familyName,
+                Name = name,
+                Surname = surname,
+                BirthDate = birthDate,
+                Image = image
+            };
+
+            //create and save staffmember in database
+            _context.Add(staffMember);
+            //_context.StaffMember.Update(staffMember);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("StaffList");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(long id)
+        {
+            HumanResourcesModel staffMember = await _context.StaffMember.FindAsync(id);
+            if (staffMember != null)
+            {
+                _context.StaffMember.Remove(staffMember);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction("StaffList");
+        }
     }
 }
