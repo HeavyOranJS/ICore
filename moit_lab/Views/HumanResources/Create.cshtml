@@ -3,9 +3,8 @@
 
 <h2>Create new staff member</h2>
 
-<form asp-action="Create" method="post">
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div class="form-group" style="width:40%">
-        @*<input type="hidden" name="Id" value="@Model.Id" />*@
         <table class="table form-group">
             <thead>
                 <tr>
@@ -34,7 +33,7 @@
                 </tr>
                 <tr>
                     <td>Image</td>
-                    <td><input class="form-control" name="Image" /></td>
+                    <td><input class="form-control-file" name="Image" type="file" /></td>
                 </tr>
             </tbody>
         </table>

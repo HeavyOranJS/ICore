@@ -1,0 +1,46 @@
+﻿@model moit_lab.Models.HumanResourcesModel
+
+
+<h2>Staff</h2>
+<div style="display:inline-block; width:20%; vertical-align:top">
+    <img src="@Url.Content(Model.Image)" class="img-thumbnail" alt="no image"/>
+</div>
+<table class="table form-group" style="display:inline-block; width:55%">
+    <thead>
+        <tr>
+            <th class="col-sm-1 col-md-1 col-lg-1">Table field</th>
+            <th class="col-sm-1 col-md-1 col-lg-1">Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>FamilyName</td>
+            <td>@Model.FamilyName</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Surname</td>
+            <td>@Model.Surname</td>
+        </tr>
+        <tr>
+            <td>Date of birth</td>
+            <td>@Model.BirthDate.Date.ToString("d")</td>
+        </tr>
+    </tbody>
+</table>
+@if (User.IsInRole("admin"))
+{
+<div style="display:block">
+    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-staffMemberId="@Model.Id"  style="display:inline-block">Edit</a>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post"  style="display:inline-block">
+        <button type="submit" class="btn btn-sm btn-danger">
+            <span class="glyphicon glyphicon-remove"></span>
+            Delete
+        </button>
+    </form>
+</div>
+}
+
