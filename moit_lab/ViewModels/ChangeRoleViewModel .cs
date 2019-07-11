@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-
 namespace moit_lab.ViewModels
 {
     public class ChangeRoleViewModel

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 namespace moit_lab.ViewModels
 {
     public class RegisterViewModel

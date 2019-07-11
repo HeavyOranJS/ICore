@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<moit_lab.Models.HumanResourcesModel>
 
-
 <h2>Staff</h2>
 <table class="table">
     @foreach (var staffMember in Model)
@@ -15,10 +14,7 @@
         </td>
         @if (User.IsInRole("admin"))
         {
-            <td>
-                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-staffMemberId="@staffMember.Id">Edit</a>
-            </td>
-
+            <td><a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-staffMemberId="@staffMember.Id">Edit</a></td>
             <td>
                 <form asp-action="Delete" asp-route-id="@staffMember.Id" method="post">
                     <button type="submit" class="btn btn-sm btn-danger">
@@ -34,4 +30,3 @@
 {
     <a class="btn btn-sm btn-primary" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> Add new member</a>
 }
-
